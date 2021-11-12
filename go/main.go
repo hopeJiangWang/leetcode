@@ -2,9 +2,12 @@ package main
 
 import (
 	"fmt"
-	"everyday"
+	"mycode/leetcode/go/problem/everyday"
 )
-func main()  {
-	fmt.Println(everyday.getMoneyAmount())
-	fmt.Println("test")
+
+func main() {
+	s := "aa"
+	goal := "aa"
+
+	fmt.Println(problem.BuddyStrings(s, goal))
 }

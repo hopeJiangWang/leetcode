@@ -1,8 +1,5 @@
-package everyday
+package problem
 
-import (
-	"fmt"
-)
 
 func getMoneyAmount() {
 
