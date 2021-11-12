@@ -6,8 +6,6 @@ import (
 )
 
 func main() {
-	s := "aa"
-	goal := "aa"
 
-	fmt.Println(problem.BuddyStrings(s, goal))
+	fmt.Println(problem.GetMoneyAmoun2t(10))
 }
