@@ -7,5 +7,5 @@ import (
 
 func main() {
 
-	fmt.Println(problem.GetMoneyAmoun2t(10))
+	fmt.Println(problem.BulbSwitch(3))
 }
