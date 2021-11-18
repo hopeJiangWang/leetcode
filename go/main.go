@@ -7,5 +7,6 @@ import (
 
 func main() {
 
-	fmt.Println(problem.BulbSwitch(3))
+	s := []string{"abcw","baz","foo","bar","xtfn","abcdef"}
+	fmt.Println(problem.MaxProduct(s))
 }
