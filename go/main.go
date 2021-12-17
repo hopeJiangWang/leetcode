@@ -9,7 +9,7 @@ func main() {
 
 	// s := []string{"abcw","baz","foo","bar","xtfn","abcdef"}
 
-	score := []int{10, 3, 8, 9, 7}
+	// score := []int{10, 3, 8, 9, 7}
 
-	fmt.Println(problem.FindRelativeRanks(score))
+	fmt.Println(problem.NumWaterBottles(9, 3))
 }
