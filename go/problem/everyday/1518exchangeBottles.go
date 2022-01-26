@@ -13,7 +13,7 @@ func NumWaterBottles(numBottles, numExchange  int) int {
     res := numBottles;
     nowNullBottles := numBottles; // 一开始的空酒瓶数
     for nowNullBottles / numExchange > 0 {
-        // fmt.Println("res: ", res)
+        fmt.Println("res: ", res)
         res += nowNullBottles / numExchange;
         nowNullBottles = nowNullBottles - (nowNullBottles / numExchange) * numExchange + (nowNullBottles / numExchange);
     }
