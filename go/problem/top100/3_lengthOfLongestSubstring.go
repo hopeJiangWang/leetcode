@@ -64,6 +64,7 @@ func LengthOfLongestSubstring(s string) int {
             // 不断地移动右指针
             m[s[rk+1]]++
             rk++
+			fmt.Printf("left: %d, map: %v", rk, m)
         }
         // 第 i 到 rk 个字符是一个极长的无重复字符子串
         ans = max(ans, rk - i + 1)
