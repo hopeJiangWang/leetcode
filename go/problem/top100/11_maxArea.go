@@ -20,6 +20,9 @@ import (
 */
 
 func MaxArea(height []int) int {
+	/*
+		因为要获取更大的面积，所以应该是矮的那一边往中间靠拢
+	*/
 	res := 0
 	
 	left, right := 0, len(height) - 1
@@ -39,19 +42,3 @@ func MaxArea(height []int) int {
 	
 		return res
 	}
-	
-	func min(x, y int) int {
-		if x < y {
-			return x
-		}
-		return y
-	}
-	
-	func max(x, y int) int {
-		if x > y {
-			return x
-		}
-		return y
-	}
-	
-}
