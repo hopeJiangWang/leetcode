@@ -13,7 +13,7 @@ func main() {
 
 	// fmt.Println(problem.NumWaterBottles(9, 3))
 	// nums := []int{2,7,11,15}
-	// target := 9
-	s := "babad"
-	fmt.Printf("res: %v\n", top100.LongestPalindrome(s))
+	// target := 3
+	// s := "babad"
+	fmt.Printf("res: %v\n", top100.IsValid("([)]"))
 }

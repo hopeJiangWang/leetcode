@@ -1,7 +1,7 @@
 package top100
 
 import (
-	"fmt"
+	// "fmt"
 )
 
 /*
@@ -24,34 +24,18 @@ func MaxArea(height []int) int {
 	
 	left, right := 0, len(height) - 1
 	
-		for left < right {
-			hight := min(height[left], height[right])
-			res = max(res, hight * (right - left))
-			// fmt.Printf("left: %d, right: %d, res: %d \n", left, right, res)
-			
-			if height[left] < height[right] {
-				left++
-			} else {
-				right--
-			}
-	
+	for left < right {
+		hight := min(height[left], height[right])
+		res = max(res, hight * (right - left))
+		// fmt.Printf("left: %d, right: %d, res: %d \n", left, right, res)
+		
+		if height[left] < height[right] {
+			left++
+		} else {
+			right--
 		}
-	
-		return res
+
 	}
-	
-	func min(x, y int) int {
-		if x < y {
-			return x
-		}
-		return y
-	}
-	
-	func max(x, y int) int {
-		if x > y {
-			return x
-		}
-		return y
-	}
-	
+
+	return res
 }
