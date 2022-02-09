@@ -19,15 +19,18 @@ func IsValid(s string) bool {
 	for _, v := range s {
 		backString := stack.Back()
 		
+		// 栈非空，且栈顶为左括号，当前为右括号，此时才能抛出栈顶元素
 		if stack.Len() > 0 && isMatch(backString.Value.(string), string(v)) {
 			stack.Remove(backString)
 			fmt.Printf("now: %v, backString: %v \n", string(v), backString.Value.(string))
 		} else {
+			// 否则，直接将新元素压栈
 			stack.PushBack(string(v))
 			fmt.Printf("now: %v \n", string(v))
 		}
 	}
 
+	// 栈不为空均为不合法
 	if stack.Len() != 0 {
 		return false
 	}
