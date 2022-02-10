@@ -1,8 +1,8 @@
 package top100
 
 import (
-	"fmt"
-	"container/list"
+	// "fmt"
+	// "container/list"
 )
 
 /*
@@ -29,7 +29,6 @@ func initNode(key, val int) *Node {
 /*
 	然后，实现双向链表
 */
-
 type DoubleLinkedList struct {
 	Head, Tail *Node	// 虚拟头、尾节点
 	Size int			// 链表元素数
@@ -69,12 +68,12 @@ func (this *DoubleLinkedList)addNodeAtLast(n *Node) {
 func (this *DoubleLinkedList)removeNode(n *Node) {
 	/*
 		n 的前一个节点的next 指向n 的next
-		n 的前一个节点的pre 指向n 的pre
+		n 的后一个节点的pre 指向n 的pre
 		释放n
 		size减一
 	*/
 	n.Pre.Next = n.Next
-	n.Pre.Pre = n.Pre
+	n.Next.Pre = n.Pre
 
 	n.Next = nil
 	n.Pre = nil
@@ -83,41 +82,80 @@ func (this *DoubleLinkedList)removeNode(n *Node) {
 }
 
 // 删除头部第一个节点 O(1)
-func (this *DoubleLinkedList)removeFirstNode() {
+func (this *DoubleLinkedList)removeFirstNode() *Node {
 	/*
-		
-		size加一
+		找到头部第一个节点，然后删除它
 	*/
-	
+	// 为空，返回空
+	if this.Head.Next == this.Tail {
+		return nil
+	}
 
-	this.Size--
+	// 否则，直接删除头部第一个节点
+	first := this.Head.Next
+	this.removeNode(first)
+	return first
 }
 
+/*
+	哈希表+双向链表：因为需要删除操作，删除一个节点不光要得到该节点本身的指针，也需要操作其前驱节点的指针
+	而双向链表才能支持直接查找前驱，保证操作的时间复杂度O（1）
+*/
 type LRUCache struct {
-
+	Capacity int			// 容量
+	KeyMap map[int]*Node	// 哈希表（key, node）
+	Cache *DoubleLinkedList	// 双向链表
 }
 
-
+// 初始化
 func Constructor(capacity int) LRUCache {
-
+	return LRUCache {
+		Capacity: capacity,
+		KeyMap: map[int]*Node{},
+		Cache: initDoubleLinkedList(),
+	}
 }
-
 
 func (this *LRUCache) Get(key int) int {
 	// 如果key 不存在，则直接返回-1
+	if _, ok := this.KeyMap[key]; !ok {
+		return -1
+	} else {
+		// 如果key 存在，则将对应的值返回（并将node 放到尾部）
+		node := this.KeyMap[key]
+		this.Cache.removeNode(node)
+		this.Cache.addNodeAtLast(node)
 
-	// 如果key 存在，则将对应的值返回（并将key 放到尾部）
+		// 这里不需要删除KeyMap
+		return this.KeyMap[key].Value
+	}
 }
-
 
 func (this *LRUCache) Put(key int, value int)  {
 	// 如果key 已存在，把旧节点删除，新节点插入到尾部
+	if _, ok := this.KeyMap[key]; ok {
+		node := this.KeyMap[key]
+		this.Cache.removeNode(node)	
+		// 这里需要删除KeyMap
+		delete(this.KeyMap, key)
 
-	// 如果capacity已满，抛出结尾节点，插入新数据到尾部
-	
-	// 如果不存在，则向尾部插入key-value
+		addNode := initNode(key, value)
+		this.Cache.addNodeAtLast(addNode)
+		this.KeyMap[key] = addNode
+	} else {
+		// 如果capacity已满，抛出最近未使用的节点，插入新数据到尾部
+		addNode := initNode(key, value)
+		if this.Cache.Size >= this.Capacity {
+			lruNode := this.Cache.removeFirstNode()
+
+			// 这里需要删除KeyMap，同时需要添加新节点的KeyMap
+			delete(this.KeyMap, lruNode.Key)
+		}
+		// 否则，直接插入新数据到尾部
+		this.Cache.addNodeAtLast(addNode)
+		this.KeyMap[key] = addNode
+	}
 }
-
 
 /**
  * Your LRUCache object will be instantiated and called as such:
