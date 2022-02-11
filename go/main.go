@@ -12,8 +12,8 @@ func main() {
 	// score := []int{10, 3, 8, 9, 7}
 
 	// fmt.Println(problem.NumWaterBottles(9, 3))
-	nums := []int{7,1,5,3,6,4}
+	// nums := []int{7,1,5,3,6,4}
 	// target := 3
-	// s := "babad"
-	fmt.Printf("res: %v\n", top100.MaxProfit(nums))
+	s := ""
+	fmt.Printf("res: %v\n", top100.LetterCombinations(s))
 }
