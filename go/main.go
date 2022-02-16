@@ -14,6 +14,6 @@ func main() {
 	// fmt.Println(problem.NumWaterBottles(9, 3))
 	// nums := []int{7,1,5,3,6,4}
 	// target := 3
-	s := ""
+	s := "23"
 	fmt.Printf("res: %v\n", top100.LetterCombinations(s))
 }
