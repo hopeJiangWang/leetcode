@@ -5,7 +5,7 @@ import (
 )
 
 /*
-你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 
+你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子
 卖出该股票。设计一个算法来计算你所能获取的最大利润。
 
 输入：[7,1,5,3,6,4]
@@ -21,29 +21,17 @@ import (
 
 func MaxProfit(prices []int) int {
 	/*
-		设在第i天，minPrice 代表前i-1天的最低价，那么第i天的最大利润：
-		如果需要卖出，则 maxProfit = price[i] - minPrice
-		如果不卖出，则 maxProfit = 第i-1 的最大利润，即maxProfit不变
+		minPrice：第i日卖的时候，前面i-1天里面的最小价格
+		maxProfit：第i日卖的时候，此时的最大利润，也即price[i]-min(price[0:i-1])
 	*/
-	len := len(prices)
 
 	minPrice, maxProfit := prices[0], 0
-	for i := 1; i < len; i++ {
-		maxProfit = max(prices[i] - minPrice, maxProfit)
+
+	for i := 0; i < len(prices); i++ {
 		minPrice = min(minPrice, prices[i])
-		fmt.Printf("index: %d, maxProfit: %d, minPrice: %d \n", i, maxProfit, minPrice)
+		maxProfit = max(maxProfit, prices[i]-minPrice)
+		fmt.Printf("maxProfit: %v, minPrice: %v \n", maxProfit, minPrice)
 	}
+
 	return maxProfit
-}
-
-func minInArry(arr []int, length int) int {
-	minNum := 0
-
-	for i := 0; i < length; i++ {
-		if minNum >= arr[i] {
-			minNum = arr[i]
-		}
-	}
-
-	return minNum
 }

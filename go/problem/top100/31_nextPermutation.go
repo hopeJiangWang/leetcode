@@ -73,3 +73,31 @@ func BubbleSort(array *[]int, begin, end int) {
 		}
 	}
 }
+
+func NextPermutation2(nums []int) {
+	/*
+	   从右至左找到第一个左边数小于右边数的位置index，
+	   然后从index的右边，找到大于它的最小的数字，将其交换后，排序右边所有的数
+	*/
+	i := len(nums) - 2
+	for i >= 0 && nums[i] >= nums[i+1] {
+		i--
+	}
+
+	if i >= 0 {
+		fmt.Println("target: ", nums[i], "i: ", i)
+		for j := len(nums) - 1; j >= 0; j-- {
+			if nums[j] > nums[i] {
+				nums[i], nums[j] = nums[j], nums[i]
+				break
+			}
+		}
+	}
+	reverse(nums[i+1:])
+}
+
+func reverse(a []int) {
+	for i, n := 0, len(a); i < n/2; i++ {
+		a[i], a[n-1-i] = a[n-1-i], a[i]
+	}
+}
