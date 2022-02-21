@@ -12,7 +12,7 @@ func main() {
 	// score := []int{10, 3, 8, 9, 7}
 
 	// fmt.Println(problem.NumWaterBottles(9, 3))
-	nums := []int{5, 4, 6, 2}
+	nums := []int{1, 2, 3}
 	// target := 3
 	// s := "()()"
 
