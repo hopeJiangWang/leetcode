@@ -12,26 +12,37 @@ package top100
 */
 
 func CombinationSum(candidates []int, target int) [][]int {
-	res := new([][]int)
-
+	var res [][]int
 	var tmpArr []int
-	combinationSumBacktrack(res, target, 0, tmpArr, candidates)
-	return *res
+
+	backtrackCombinationSum(candidates, tmpArr, target, 0, 0, &res)
+	return res
 }
 
-func combinationSumBacktrack(res *[][]int, target, nowSum int, tmpArr, candidates []int) {
+func backtrackCombinationSum(candidates, tmpArr []int, target, startIndex, nowSum int, res *[][]int) {
 	/*
-		回溯跳出的条件为：和为target
+		回溯出口：和达到目标值即可
 	*/
 	if nowSum == target {
-		*res = append(*res, tmpArr)
+		tmp := make([]int, len(tmpArr))
+		copy(tmp, tmpArr)        // 拷贝
+		*res = append(*res, tmp) // 放入结果集
+		tmpArr = []int{}         // 清空临时数组
 		return
 	}
-	for _, v := range candidates {
-		if nowSum < target {
-			combinationSumBacktrack(res, target, nowSum+v, append(tmpArr, v), candidates)
-		}
+
+	// 剪枝
+	if nowSum > target {
+		return
 	}
 
+	// 这里保存初始下标，为了避免重复
+	for i := startIndex; i < len(candidates); i++ {
+		tmpArr = append(tmpArr, candidates[i])
+		nowSum += candidates[i]
+		backtrackCombinationSum(candidates, tmpArr, target, i, nowSum, res)
+		// 回溯
+		tmpArr = tmpArr[:len(tmpArr)-1]
+		nowSum -= candidates[i]
+	}
 }
-

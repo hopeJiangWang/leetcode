@@ -12,9 +12,9 @@ func main() {
 	// score := []int{10, 3, 8, 9, 7}
 
 	// fmt.Println(problem.NumWaterBottles(9, 3))
-	nums := []int{2, 3, 6, 7}
+	nums := []int{5, 4, 6, 2}
 	// target := 3
 	// s := "()()"
 
-	fmt.Printf("res: %v\n", top100.CombinationSum(nums, 8))
+	fmt.Printf("res: %v\n", top100.Permute(nums))
 }
