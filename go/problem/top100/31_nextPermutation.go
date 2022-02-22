@@ -97,7 +97,8 @@ func NextPermutation2(nums []int) {
 }
 
 func reverse(a []int) {
-	for i, n := 0, len(a); i < n/2; i++ {
+	n := len(a)
+	for i := 0; i < n/2; i++ {
 		a[i], a[n-1-i] = a[n-1-i], a[i]
 	}
 }
