@@ -14,6 +14,9 @@ package top100
 func SearchRange(nums []int, target int) []int {
 	/*
 		二分法查询：先找到一个目标值，然后以此往两边查找到边界值
+
+		或者就是找到目标值之后，不直接退出，继续往左走，进而找到左边界
+		同理，找到右边界
 	*/
 	var numsLen int = len(nums)
 	if numsLen == 0 || nums[0] > target || nums[numsLen-1] < target {

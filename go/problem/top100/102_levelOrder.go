@@ -12,39 +12,37 @@ type TreeNode struct {
 
 func LevelOrder(root *TreeNode) [][]int {
 	/*
-		从根节点开始，将每一层所有节点的所有子节点全部存起来，也即遍历当前层的时候把下一层的节点存起来
-		然后依次遍历存起来的节点，并且存起来下一层的节点
-	*/
-	var nowList []*TreeNode
-	var res [][]int
+		二叉树的层序遍历：
+		从根节点开始，依次保存下一层所有节点，遍历之
 
-	// 如果根节点为空，直接返回即可
+	*/
+	var res [][]int
 	if root == nil {
 		return res
 	}
 
-	// 先将根节点压入队列
-	nowList = append(nowList, root)
-	// 只要还有节点，就需要新增一层，继续遍历
-	for i := 0; len(nowList) > 0; i++ {
-		// 每一层初始化一个列表，并且新建一个列表存储下一层的节点
-		res = append(res, []int{})
-        tmpAns := []*TreeNode{} 
-		
-		// 遍历本层所有节点，并且将每个节点对应的下一层节点保存
-		for j := 0; j < len(nowList); j++ {
-			res[i] = append(res[i], nowList[j].Val)
+	var queue []*TreeNode
+	queue = append(queue, root)
 
-			if nowList[j].Left != nil {
-				tmpAns = append(tmpAns, nowList[j].Left)
+	for len(queue) > 0 {
+		// 获取当前层级
+		curLevel := queue
+		tmpArr := []int{}
+		queue = []*TreeNode{}
+		// 遍历当前层级数据
+		for len(curLevel) > 0 {
+			top := curLevel[0]
+			tmpArr = append(tmpArr, top.Val)
+			// 获取下一层的数据
+			if top.Left != nil {
+				queue = append(queue, top.Left)
 			}
-
-			if nowList[j].Right != nil {
-				tmpAns = append(tmpAns, nowList[j].Right)
+			if top.Right != nil {
+				queue = append(queue, top.Right)
 			}
+			curLevel = curLevel[1:]
 		}
-
-		nowList = tmpAns
+		res = append(res, tmpArr)
 	}
 
 	return res
