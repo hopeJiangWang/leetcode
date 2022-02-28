@@ -12,12 +12,12 @@ func main() {
 	// score := []int{10, 3, 8, 9, 7}
 
 	// fmt.Println(problem.NumWaterBottles(9, 3))
-	nums := []int{2, 3, 1, 1, 4}
+	// nums := []int{2, 3, 1, 1, 4}
 	// target := 3
 	// s := "()()"
 	//matrix := [][]int{{1,2,3},{4,5,6},{7,8,9}}
 	//top100.Rotate(matrix)
 	//fmt.Println("matrix: ", matrix)
 
-	fmt.Printf("res: %v\n", top100.CanJump(nums))
+	fmt.Printf("res: %v\n", top100.Reverse(1534236469))
 }
