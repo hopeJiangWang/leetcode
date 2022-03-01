@@ -40,40 +40,6 @@ func reverseKGroup1(head *ListNode, k int) *ListNode {
 }
 
 func reverseKGroup(head *ListNode, k int) *ListNode {
-	/*
-		常数额外空间的算法来解决此问题
-		不只是单纯的改变节点内部的值，而是需要实际进行节点交换
-
-		那么就是找到k个节点了，就反转他；否则，维持原状即可
-	*/
-	res := &ListNode{Val: -1}
-	res.Next = head
-
-	prev := res
-	next := nil
-	cur := res.Next
-
-	lenOfList := 0
-	for head != nil {
-		lenOfList++
-		head = head.Next
-	}
-
-	for i := 0; i < lenOfList/k; i++ {
-		// 满足k个，翻转它
-		for j := 0; j < k; j++ {
-			next = cur.Next
-			cur.Next = next.Next
-			next.Next = prev.Next
-			prev.Next = next
-		}
-		// 不足k个，直接遍历即可
-
-	}
-
-	return res.Next
-}
-func reverseKGroup2(head *ListNode, k int) *ListNode {
 	hair := &ListNode{Next: head}
 	pre := hair
 
@@ -105,4 +71,34 @@ func myReverse(head, tail *ListNode) (*ListNode, *ListNode) {
 		p = nex
 	}
 	return tail, head
+}
+
+// 反转链表
+func listReverse(head, tail *ListNode) *ListNode {
+	cur := head
+	var pre *ListNode
+
+	/*
+		1.先将pre往后移，指向cur；
+		2.cur指向cur.Next，往后移；
+		3.反转，cur.Next指向pre；
+	*/
+	for cur != tail {
+		pre, cur, cur.Next = cur, cur.Next, pre
+	}
+
+	return pre
+}
+
+func reverseKGroup2(head *ListNode, k int) *ListNode {
+	cur := head
+    for i := 0; i < k; i++ {
+        if cur == nil {
+            return head
+        }
+        cur = cur.Next
+    }
+    newHead := listReverse(head, cur)
+    head.Next = reverseKGroup2(cur, k)
+    return newHead
 }
