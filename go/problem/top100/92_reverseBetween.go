@@ -7,20 +7,32 @@ left, right 位置之间进行翻转：
 */
 
 func reverseBetween(head *ListNode, left int, right int) *ListNode {
-	cnt := 1
-	cur := head
-	var tmpHead, tmpTail *ListNode
+	res := &ListNode{Val: -1}
+	res.Next = head
 
-	for cur != nil {
-		if cnt == left {
-			tmpHead = cur
-		} else if cnt == right {
-			tmpTail = cur
-			newHead, newTail = myReverse(tmpHead, tmpTail)
-		} 
-		
-		cur = cur.Next
-		cnt++
+	pre := res
+	for i := 0; i < left; i++ {
+		pre = pre.Next
 	}
-	return head
+
+	/*
+		1.定位到要反转部分的头节点 2，head = 2；前驱结点 1，pre = 1；
+		2.当前节点的下一个节点3调整为前驱节点的下一个节点 1->3->2->4->5,
+		3.当前结点仍为2， 前驱结点依然是1，重复上一步操作。。。
+		4.1->4->3->2->5.
+
+		next := cur.Next    // 先获取下一个节点
+        cur.Next = pre      // 反转当前节点的next指针
+        pre = cur           // 更新前置节点
+        cur = next          // 跳到下一个节点
+	*/
+	cur := pre.Next
+	for i := left; i < right; i++ {
+		nxt := cur.Next
+		cur.Next = nxt.Next
+		nxt.Next = pre.Next
+		pre.Next = nxt
+	}
+
+	return res.Next
 }
