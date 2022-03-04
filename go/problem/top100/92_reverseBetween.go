@@ -11,7 +11,7 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
 	res.Next = head
 
 	pre := res
-	for i := 0; i < left; i++ {
+	for i := 1; i < left; i++ {
 		pre = pre.Next
 	}
 
@@ -28,10 +28,10 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
 	*/
 	cur := pre.Next
 	for i := left; i < right; i++ {
-		nxt := cur.Next
-		cur.Next = nxt.Next
-		nxt.Next = pre.Next
-		pre.Next = nxt
+		nxt := cur.Next		// 先获取下一个节点
+		cur.Next = nxt.Next	// 反转部分的尾部指向下下个节点
+		nxt.Next = pre.Next	// 反转当前节点的next指针
+		pre.Next = nxt		// 将 下一节点 放到反转部分的头部
 	}
 
 	return res.Next

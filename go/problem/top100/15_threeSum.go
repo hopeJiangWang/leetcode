@@ -39,7 +39,6 @@ func threeSum(nums []int) [][]int {
 		
 		for l < r {
 			// 如果找到了这样的三个数，直接放入结果集
-			// 如果找到了这样的三个数，直接放入结果集
 			if nums[i] + nums[l] + nums[r] == 0 {
 				res = append(res, []int{nums[i], nums[l], nums[r]})
 

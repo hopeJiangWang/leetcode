@@ -14,10 +14,10 @@ func main() {
 	// fmt.Println(problem.NumWaterBottles(9, 3))
 	// nums := []int{2, 3, 1, 1, 4}
 	// target := 3
-	// s := "()()"
-	//matrix := [][]int{{1,2,3},{4,5,6},{7,8,9}}
+	// s := "()()" 
+	matrix := [][]int{{2,3},{1,2},{3,4},{1,3}}
 	//top100.Rotate(matrix)
 	//fmt.Println("matrix: ", matrix)
 
-	fmt.Printf("res: %v\n", top100.Reverse(1534236469))
+	fmt.Printf("res: %v\n", top100.EraseOverlapIntervals(matrix))
 }
