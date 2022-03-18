@@ -3,19 +3,7 @@ package top100
 // import "fmt"
 
 func reverseList(head *ListNode) *ListNode {
-    return listReverse(head, nil)
-}
-
-func reverseList2(head *ListNode) {
-    var pre *ListNode
-    cur := head
-
-    for cur != nil {
-        next := cur.Next    // 先获取下一个节点
-        cur.Next = pre      // 反转当前节点的next指针
-        pre = cur           // 更新前置节点
-        cur = next          // 跳到下一个节点
-    }
+	return listReverse(head, nil)
 }
 
 // 反转链表
@@ -29,3 +17,16 @@ func reverseList2(head *ListNode) {
 
 // 	return pre
 // }
+
+func reverseList3(head *ListNode) *ListNode {
+	var pre *ListNode
+	cur := head
+
+	for cur != nil {
+		next := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = next
+	}
+	return pre
+}

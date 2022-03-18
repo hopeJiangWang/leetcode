@@ -7,8 +7,8 @@ import (
 
 func main() {
 
-	//s := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
-
+	s := []string{"apple", "pen"}
+	str := "applepenapple"
 	// score := []int{10, 3, 8, 9, 7}
 
 	// fmt.Println(problem.NumWaterBottles(9, 3))
@@ -19,5 +19,5 @@ func main() {
 	//top100.Rotate(matrix)
 	//fmt.Println("matrix: ", matrix)
 
-	fmt.Printf("res: %v\n", top100.Search(nums, 0))
+	fmt.Printf("res: %v\n", top100.WordBreak(str, s))
 }

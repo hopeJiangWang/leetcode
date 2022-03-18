@@ -92,13 +92,59 @@ func listReverse(head, tail *ListNode) *ListNode {
 
 func reverseKGroup2(head *ListNode, k int) *ListNode {
 	cur := head
-    for i := 0; i < k; i++ {
-        if cur == nil {
-            return head
-        }
-        cur = cur.Next
-    }
-    newHead := listReverse(head, cur)
-    head.Next = reverseKGroup2(cur, k)
-    return newHead
+	for i := 0; i < k; i++ {
+		if cur == nil {
+			return head
+		}
+		cur = cur.Next
+	}
+	newHead := listReverse(head, cur)
+	head.Next = reverseKGroup2(cur, k)
+	return newHead
+}
+
+// 直接模拟
+
+/*
+	时间：O(n) = O(n/k)*O(k)
+*/
+func reverseKGroup3(head *ListNode, k int) *ListNode {
+	res := &ListNode{Next: head}
+	pre := res
+
+	for head != nil {
+		tail := pre
+		for i := 0; i < k; i++ {
+			tail = tail.Next
+			// 不足k个，直接返回剩下的即可
+			if tail == nil {
+				return pre.Next
+			}
+		}
+
+		// 满足k个，则需要将head->tail之间的进行反转，并且将其拼接回去
+		next := tail.Next // 记录下一个节点
+		head, tail = reverseHeadAndTail(head, tail)
+
+		// 开始进行下一个阶段的操作
+		pre.Next = head
+		pre = tail
+		tail.Next = next
+		head = next
+	}
+	return res.Next
+}
+
+// 反转头尾之间的链表
+func reverseHeadAndTail(head, tail *ListNode) (*ListNode, *ListNode) {
+	pre := tail.Next // 因为头节点需要变成尾节点
+	cur := head
+
+	for pre != tail {
+		next := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = next
+	}
+	return tail, head
 }
