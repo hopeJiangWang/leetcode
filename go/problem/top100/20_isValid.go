@@ -31,11 +31,7 @@ func IsValid(s string) bool {
 	}
 
 	// 栈不为空均为不合法
-	if stack.Len() != 0 {
-		return false
-	}
-
-	return true
+	return stack.Len() == 0
 }
 
 func isMatch(s1, s2 string) bool {

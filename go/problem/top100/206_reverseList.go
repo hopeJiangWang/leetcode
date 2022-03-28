@@ -2,7 +2,7 @@ package top100
 
 // import "fmt"
 
-func reverseList(head *ListNode) *ListNode {
+func ReverseList(head *ListNode) *ListNode {
 	return listReverse(head, nil)
 }
 
@@ -18,7 +18,7 @@ func reverseList(head *ListNode) *ListNode {
 // 	return pre
 // }
 
-func reverseList3(head *ListNode) *ListNode {
+func ReverseList3(head *ListNode) *ListNode {
 	var pre *ListNode
 	cur := head
 

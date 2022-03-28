@@ -50,7 +50,7 @@ func merge(lists []*ListNode, l, r int) *ListNode {
 }
 
 // 合并两个链表
-func mergeTwoLists2(l1 *ListNode, l2 *ListNode) *ListNode {
+func MergeTwoLists2(l1 *ListNode, l2 *ListNode) *ListNode {
 	res := &ListNode{Val: -1}
 	cur := res
 
@@ -76,12 +76,12 @@ func mergeTwoLists2(l1 *ListNode, l2 *ListNode) *ListNode {
 
 // 	 O(kn×logk)
 //   O(logk)
-func mergeKLists2(lists []*ListNode) *ListNode {
+func MergeKLists2(lists []*ListNode) *ListNode {
 	// 分治合并
-	return mergeMy(lists, 0, len(lists)-1)
+	return MergeMy(lists, 0, len(lists)-1)
 }
 
-func mergeMy(lists []*ListNode, left, right int) *ListNode {
+func MergeMy(lists []*ListNode, left, right int) *ListNode {
 	// 二分，合并
 	if left > right {
 		return nil
@@ -91,5 +91,5 @@ func mergeMy(lists []*ListNode, left, right int) *ListNode {
 	}
 
 	mid := (left + right) >> 1
-	return mergeTwoLists2(mergeMy(lists, left, mid), mergeMy(lists, mid+1, right))
+	return MergeTwoLists2(MergeMy(lists, left, mid), MergeMy(lists, mid+1, right))
 }

@@ -1,6 +1,6 @@
 package top100
 
-func numTrees(n int) int {
+func NumTrees(n int) int {
     /*
         假设n个节点存在二叉排序树的个数是f(n)，那么根节点的情况为：1, 2, ... , n
         1为根节点，左子树节点个数为0，右子树为n-1，总的情况会有：f(0)*f(n-1)

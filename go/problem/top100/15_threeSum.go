@@ -4,7 +4,7 @@ import (
 	"sort"
 )
 
-func threeSum(nums []int) [][]int {
+func ThreeSum(nums []int) [][]int {
 	/*
 		1. 首先需要数组长度大于等于3；
 		2. 可以先排序下，如果最小的数已经是大于0了，或者说最大的数已经是小于0的，那就可以直接返回了；

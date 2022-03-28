@@ -11,6 +11,40 @@ pwwkew: 3
 : 0
 */
 
+func LengthOfLongestSubstring2(s string) int {
+    var res int
+
+    /*
+        1.使用一个哈希表记录当前子串的所含字母；
+        2.如果发现已经有重复的了，就记下当前的最大长度，然后将左指针往右移动；
+        3.重复上述步骤，知道左指针到达尾部；
+    */
+
+    lenOfString := len(s)
+    if lenOfString == 0 {
+        return 0
+    }
+
+    wordMap := make(map[byte]int)
+    right := -1 // 还未移动
+    for i := 0; i < lenOfString; i++ {
+        if i != 0 {
+            // 此时需要移动左指针了
+            delete(wordMap, s[i-1])
+        }
+
+        // 未到结尾且无重复字符
+        for right < lenOfString && wordMap[s[right+1]] == 0 {
+            wordMap[s[right]] = 1
+            right++
+        }
+
+        res = max(res, right-i+1)
+    }
+    return res
+}
+
+
 // func LengthOfLongestSubstring(s string) int {
 // 	var res int = 0
 

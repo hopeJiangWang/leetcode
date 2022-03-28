@@ -6,7 +6,7 @@ left, right 位置之间进行翻转：
 	输出：[1,4,3,2,5]
 */
 
-func reverseBetween(head *ListNode, left int, right int) *ListNode {
+func ReverseBetween(head *ListNode, left int, right int) *ListNode {
 	res := &ListNode{Val: -1}
 	res.Next = head
 

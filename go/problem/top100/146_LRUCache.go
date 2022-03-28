@@ -49,23 +49,23 @@ func initDoubleLinkedList() *DoubleLinkedList {
 }
 
 // 在尾部插入新节点 O(1)
-func (this *DoubleLinkedList)addNodeAtLast(n *Node) {
+func (cache *DoubleLinkedList)addNodeAtLast(n *Node) {
 	/*
 		n 的next 指向表尾, n 的pre 指向最后一个节点
 		最后一个节点的next 指向n ，表尾的pre 指向n
 		size加一
 	*/
-	n.Next = this.Tail
-	n.Pre = this.Tail.Pre
+	n.Next = cache.Tail
+	n.Pre = cache.Tail.Pre
 
-	this.Tail.Pre.Next = n
-	this.Tail.Pre = n
+	cache.Tail.Pre.Next = n
+	cache.Tail.Pre = n
 
-	this.Size++
+	cache.Size++
 }
 
 // 删除节点 O(1)
-func (this *DoubleLinkedList)removeNode(n *Node) {
+func (cache *DoubleLinkedList)removeNode(n *Node) {
 	/*
 		n 的前一个节点的next 指向n 的next
 		n 的后一个节点的pre 指向n 的pre
@@ -78,22 +78,22 @@ func (this *DoubleLinkedList)removeNode(n *Node) {
 	n.Next = nil
 	n.Pre = nil
 
-	this.Size--
+	cache.Size--
 }
 
 // 删除头部第一个节点 O(1)
-func (this *DoubleLinkedList)removeFirstNode() *Node {
+func (cache *DoubleLinkedList)removeFirstNode() *Node {
 	/*
 		找到头部第一个节点，然后删除它
 	*/
 	// 为空，返回空
-	if this.Head.Next == this.Tail {
+	if cache.Head.Next == cache.Tail {
 		return nil
 	}
 
 	// 否则，直接删除头部第一个节点
-	first := this.Head.Next
-	this.removeNode(first)
+	first := cache.Head.Next
+	cache.removeNode(first)
 	return first
 }
 
@@ -116,44 +116,44 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
-func (this *LRUCache) Get(key int) int {
+func (cache *LRUCache) Get(key int) int {
 	// 如果key 不存在，则直接返回-1
-	if _, ok := this.KeyMap[key]; !ok {
+	if _, ok := cache.KeyMap[key]; !ok {
 		return -1
 	} else {
 		// 如果key 存在，则将对应的值返回（并将node 放到尾部）
-		node := this.KeyMap[key]
-		this.Cache.removeNode(node)
-		this.Cache.addNodeAtLast(node)
+		node := cache.KeyMap[key]
+		cache.Cache.removeNode(node)
+		cache.Cache.addNodeAtLast(node)
 
 		// 这里不需要删除KeyMap
-		return this.KeyMap[key].Value
+		return cache.KeyMap[key].Value
 	}
 }
 
-func (this *LRUCache) Put(key int, value int)  {
+func (cache *LRUCache) Put(key int, value int)  {
 	// 如果key 已存在，把旧节点删除，新节点插入到尾部
-	if _, ok := this.KeyMap[key]; ok {
-		node := this.KeyMap[key]
-		this.Cache.removeNode(node)	
+	if _, ok := cache.KeyMap[key]; ok {
+		node := cache.KeyMap[key]
+		cache.Cache.removeNode(node)	
 		// 这里需要删除KeyMap
-		delete(this.KeyMap, key)
+		delete(cache.KeyMap, key)
 
 		addNode := initNode(key, value)
-		this.Cache.addNodeAtLast(addNode)
-		this.KeyMap[key] = addNode
+		cache.Cache.addNodeAtLast(addNode)
+		cache.KeyMap[key] = addNode
 	} else {
 		// 如果capacity已满，抛出最近未使用的节点，插入新数据到尾部
 		addNode := initNode(key, value)
-		if this.Cache.Size >= this.Capacity {
-			lruNode := this.Cache.removeFirstNode()
+		if cache.Cache.Size >= cache.Capacity {
+			lruNode := cache.Cache.removeFirstNode()
 
 			// 这里需要删除KeyMap，同时需要添加新节点的KeyMap
-			delete(this.KeyMap, lruNode.Key)
+			delete(cache.KeyMap, lruNode.Key)
 		}
 		// 否则，直接插入新数据到尾部
-		this.Cache.addNodeAtLast(addNode)
-		this.KeyMap[key] = addNode
+		cache.Cache.addNodeAtLast(addNode)
+		cache.KeyMap[key] = addNode
 	}
 }
 
