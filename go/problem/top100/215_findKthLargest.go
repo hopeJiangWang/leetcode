@@ -16,3 +16,7 @@ func FindKthLargest(nums []int, k int) int {
 
 	return nums[len(nums)-k]
 }
+
+func FindKthLargest2(nums []int, k int) int {
+	
+}
