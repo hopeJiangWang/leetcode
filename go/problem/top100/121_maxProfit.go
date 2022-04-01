@@ -4,6 +4,28 @@ import (
 	"fmt"
 )
 
+func MaxProfit2(prices []int) int {
+	/*
+		输入：[7,1,5,3,6,4]
+		输出：5
+		那么第i天的时候考虑卖出，我们只需要找到 [0, i)天的最小价格，比如说是第j天
+		也即第j天买入，第i天卖出，此时的最大利润为 prices[i] - prices[j]
+		依次考虑每天可以获取的最大利润，取最大值即可	
+	*/
+	lenOfPrice := len(prices)
+	if lenOfPrice == 0 {
+		return 0
+	}
+
+	minPrice, maxProfit := prices[0], 0
+	for i := 0; i < lenOfPrice; i++ {
+		minPrice = min(minPrice, prices[i])
+		maxProfit = max(maxProfit, prices[i] - minPrice)
+	}
+
+	return maxProfit
+}
+
 /*
 你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子
 卖出该股票。设计一个算法来计算你所能获取的最大利润。
