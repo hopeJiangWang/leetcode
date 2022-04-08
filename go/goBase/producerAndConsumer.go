@@ -5,7 +5,7 @@ import "fmt"
 //import "time"
  
 //此通道只能写，不能读
-func producer(out chan int){
+func producer(out chan<- int){
 	for i := 0; i < 10; i++ {
 		fmt.Println("Producer: ", i)
 		out <- i
@@ -14,7 +14,7 @@ func producer(out chan int){
 }
  
 //此通大道只能读，不能写
-func consumer(in chan int){
+func consumer(in <-chan int){
 	for num := range in {
 		fmt.Println("Consumer: ", num)
 	}
