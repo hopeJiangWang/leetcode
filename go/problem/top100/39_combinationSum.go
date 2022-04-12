@@ -24,6 +24,8 @@ func backtrackCombinationSum(candidates, tmpArr []int, target, startIndex, nowSu
 		回溯出口：和达到目标值即可
 	*/
 	if nowSum == target {
+		// 因为这里用的切片，有指针指向底层数据，后续的修改会对tmpArr也造成影响
+		// 所以需要新建一个tmp
 		tmp := make([]int, len(tmpArr))
 		copy(tmp, tmpArr)        // 拷贝
 		*res = append(*res, tmp) // 放入结果集
