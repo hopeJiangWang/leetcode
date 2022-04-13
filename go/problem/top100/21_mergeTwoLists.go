@@ -1,6 +1,6 @@
 package top100
 
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+func mergeTwoLists21(list1 *ListNode, list2 *ListNode) *ListNode {
 	res := &ListNode{Val: -1}	// 必须非空，否则后续next会空
 	cur := res 
 

@@ -8,6 +8,7 @@ package top100
 
 func sortArray(nums []int) []int {
 	quickSort2(nums, 0, len(nums)-1)
+	return nums
 }
 
 func quickSort2(nums []int, left, right int) {

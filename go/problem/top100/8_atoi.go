@@ -1,4 +1,4 @@
-package main
+package top100
 
 import (
 	"fmt"
@@ -23,7 +23,7 @@ import (
 输出：42
 */
 
-func myAtoi(s string) int {
+func MyAtoi(s string) int {
 	res, flag, i := 0, 1, 0
 	lenOfS := len(s)
 
@@ -31,26 +31,28 @@ func myAtoi(s string) int {
 		i++
 	}
 	
-	for i < lenOfS {
+	// 有符号的话，就判断下符号，没有的话，就后面循环取数
+	if i < lenOfS {
 		if s[i] == '-' {
 			flag = -1
+			i++
 		} else if s[i] == '+' {
 			flag = 1
+			i++
 		}
 	}
 
+	// 从左到右依次累加
+	// 如果找到非数字的字符了，就直接退出循环了
 	for i < lenOfS && s[i] >= '0' && s[i] <= '9' {
-		res = res * 10 + int(s[i] - '0')
-		if res * flag >= math.MaxInt32 {
-			return math.MaxInt32
-		} else if res * flag <= math.MinInt32 {
+		res = 10*res + int(s[i]-'0')
+		// 整数超过32位有符号整数范围,特殊处理
+		if flag * res < math.MinInt32 {
 			return math.MinInt32
+		} else if flag * res > math.MaxInt32 {
+			return math.MaxInt32
 		}
+		i++
 	}
-
 	return res * flag
-}
-
-func main() {
-	fmt.Println(myAtoi("   -42"))
 }

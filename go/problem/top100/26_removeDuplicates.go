@@ -5,7 +5,7 @@ package top100
 输出：2, nums = [1,2,_]
 */
 
-func RemoveDuplicates([]int nums) int {
+func RemoveDuplicates(nums []int) int {
 	/*
 		使用双指针，左指针计数用，右指针跳过相同数据
 	*/

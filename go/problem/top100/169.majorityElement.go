@@ -5,7 +5,7 @@ package top100
 输出：2
 */
 
-func MajorityElement([]int nums) int {
+func MajorityElement(nums []int) int {
 	/*
 		摩尔投票法（依次去除两个不同的数，那么剩下来的就是众数了）：
 		1. 先选择一个 candidate, 初始化计数count=0, 然后遍历数组;
