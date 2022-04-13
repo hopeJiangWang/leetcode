@@ -1,7 +1,6 @@
 package top100
 
 import (
-	"fmt"
 	"math"
 )
 
