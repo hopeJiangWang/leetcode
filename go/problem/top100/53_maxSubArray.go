@@ -16,6 +16,13 @@ import (
 输出：23
 */
 
+func MaxSubArray3(nums []int) int {
+	/*
+		动态规划：
+		设i位置的结尾的
+	*/
+}
+
 func MaxSubArray1(nums []int) int {
 	/*
 		最简单直观的：直接双指针查找即可（O(n^2)）
@@ -69,3 +76,5 @@ func MaxSubArray(nums []int) int {
 	fmt.Println(dp)
 	return res
 }
+
+
