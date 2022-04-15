@@ -31,3 +31,37 @@ func get1Or0() int {
 func rand7() int {
 	return 0
 }
+
+func Rand10() int {
+    /*
+		1、先用一个通用的函数，取出等概率的0和1；
+		2、然后位运算（0，1）取目标值；
+	*/
+	var res int
+
+	for {
+		/*
+			[0, 15] -> [1, 10]
+		*/
+		res = getBinary() << 3 + getBinary() << 2 + getBinary() << 1 + getBinary() 
+		if res <= 9 {
+			break 
+		}
+	}
+
+	return res + 1
+}
+
+func getBinary() int {
+	num := rand7()
+
+	for {
+		if num < 4 {
+			return 0
+		} else if num > 4 {
+			return 1
+		} else {
+			num = rand7()
+		}
+	}
+}
