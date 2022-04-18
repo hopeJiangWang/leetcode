@@ -19,8 +19,20 @@ import (
 func MaxSubArray3(nums []int) int {
 	/*
 		动态规划：
-		设i位置的结尾的
+		设i的结尾的连续子数组的和为dp[i]:
+		dp[i] = max(dp[i-1] + nums[i], nums[i])
 	*/
+	var res int
+	numsLen := len(nums)
+
+	dp := make([]int, numsLen)
+	res, dp[0] = nums[0], nums[0]
+
+	for i := 1; i < numsLen; i++ {
+		dp[i] = max(dp[i-1] + nums[i], nums[i])
+		res = max(res, dp[i])
+	}
+	return res
 }
 
 func MaxSubArray1(nums []int) int {
