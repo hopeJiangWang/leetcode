@@ -1,6 +1,6 @@
 package top100
 
-import "fmt"
+// import "fmt"
 
 /*
 输入：nums = [4,5,6,7,0,1,2]
