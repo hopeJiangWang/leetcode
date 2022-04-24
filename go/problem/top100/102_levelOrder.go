@@ -10,6 +10,35 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+func LevelOrder2(root *TreeNode) [][]int {
+	var res [][]int 
+
+	if root == nil {
+		return res
+	}
+
+	var queue []*TreeNode
+	queue = append(queue, root)
+	for len(queue) > 0 {
+		tmpQueue := queue
+		tmpRes := []int{}
+		queue = []*TreeNode{}
+		for _, v := range tmpQueue {
+			if v.Left != nil {
+				queue = append(queue, v.Left)
+			}
+			if v.Right != nil {
+				queue = append(queue, v.Right)
+			}
+			tmpRes = append(tmpRes, v.Val)
+		}
+		res = append(res, tmpRes)
+	}
+
+	return res
+}
+
+
 func LevelOrder(root *TreeNode) [][]int {
 	/*
 		二叉树的层序遍历：
