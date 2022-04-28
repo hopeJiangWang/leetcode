@@ -148,3 +148,32 @@ func reverseHeadAndTail(head, tail *ListNode) (*ListNode, *ListNode) {
 	}
 	return tail, head
 }
+
+func reverseKGroup4(head *ListNode, k int) *ListNode {
+	cur := head
+
+	for i := 0; i < k; i++ {
+		// 不到k个就直接返回
+		if cur == nil {
+			return head
+		}
+		cur = cur.Next
+	}
+
+	// 否则，翻转这k个节点
+	newHead := listReverse2(head, cur)
+	// 递归：更新下一个“循环”的头节点，重复上述操作
+	head.Next = reverseKGroup4(cur, k)
+	return newHead
+}
+
+func listReverse2(head, tail *ListNode) *ListNode {
+	cur := head
+	var pre *ListNode
+
+	for cur != tail {
+		pre, cur, cur.Next = cur, cur.Next, pre
+	}
+
+	return pre
+}
