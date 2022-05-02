@@ -93,3 +93,27 @@ func MergeMy(lists []*ListNode, left, right int) *ListNode {
 	mid := (left + right) >> 1
 	return MergeTwoLists2(MergeMy(lists, left, mid), MergeMy(lists, mid+1, right))
 }
+
+
+
+
+
+func mergeKLists3(lists []*ListNode) *ListNode {
+	return merge3(lists, 0, len(lists)-1)
+}
+
+func merge3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
