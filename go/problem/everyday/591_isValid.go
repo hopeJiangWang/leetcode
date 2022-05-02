@@ -1,6 +1,6 @@
 package everyday
 
-import "regexp"
+import "strings"
 
 func isValid(code string) bool {
     /*

@@ -1,4 +1,4 @@
-package problem
+package everyday
 
 func findPoisonedDuration(timeSeries []int, duration int) int {
     // 1. 如果没中毒：expired = timeSeries[i] + duration，增加的持续中毒时间为duration
