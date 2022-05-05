@@ -25,9 +25,9 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	return dp[len1][len2]
 }
 
-func max(x, y int) int {
-	if x < y {
-		return y
-	}
-	return x
-}
+// func max(x, y int) int {
+// 	if x < y {
+// 		return y
+// 	}
+// 	return x
+// }
