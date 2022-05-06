@@ -98,17 +98,6 @@ func MergeMy(lists []*ListNode, left, right int) *ListNode {
 
 
 
-func mergeKLists3(lists []*ListNode) *ListNode {
-	return merge3(lists, 0, len(lists)-1)
-}
-
-func merge3
-
-
-
-
-
-
 
 
 

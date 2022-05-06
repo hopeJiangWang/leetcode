@@ -71,7 +71,7 @@ func ThreeSum(nums []int) [][]int {
 输出：[[-1,-1,2],[-1,0,1]]
 */
 
-func ThreeSum2(nums []int) [][]int {
+// func ThreeSum2(nums []int) [][]int {
 
 
-}
+// }

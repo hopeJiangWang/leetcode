@@ -1,8 +1,5 @@
 package top100
 
-import (
-	"fmt"
-)
 
 /*
 abcabcbb: 3
