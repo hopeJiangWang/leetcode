@@ -2,7 +2,7 @@ package everyday
 
 import (
 	"math"
-	"mycode/leetcode/go/problem/common"
+	"leetcode/go/problem/common"
 )
 
 func GetMoneyAmount(n int) int {

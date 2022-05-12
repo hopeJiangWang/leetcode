@@ -89,3 +89,37 @@ func maxHeapify(nums []int, start, end int) {
 		}
 	}
 }
+
+func quickSort3(left, right int, nums[]int) {
+	if left < right {
+		privat := partition3(left, right, nums)
+
+		quickSort3(left, privat-1, nums)
+		quickSort3(privat+1, right, nums)
+	}
+}
+
+func partition3(left, right int, nums[]int) int {
+	/*
+		就是从右至左找到第一个小于基准数的值；
+		再从左至右找到第一个大于基准数的值，交换他
+	*/
+	privat := nums[left]
+	for left < right {
+		for left < right && nums[right] >= privat {
+			right--
+		}
+
+        // 用这个数更新基准值位置
+		nums[left] = nums[right]
+
+		for left < right && nums[left] < privat {
+			left++
+		}
+
+		// 用这个数更新之前空出来的位置
+		nums[right] = nums[left]
+	}
+	nums[left] = privat
+	return left
+}

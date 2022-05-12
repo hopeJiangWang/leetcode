@@ -20,7 +20,7 @@ type Codec struct {
     
 }
 
-func Constructor() Codec {
+func Constructor2() Codec {
     return Codec{}
 }
 
