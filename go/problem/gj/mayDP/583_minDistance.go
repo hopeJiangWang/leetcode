@@ -15,7 +15,7 @@ package mayDP
 func MinDistance(word1 string, word2 string) int {
 	/*
 		dp[i][j]：words1的前i-1个字符，与words2的前j-1个字符的最长相同子序列
-		(1)如果words1[i]==words2[j]，dp[i][j]=dp[i-1][j-1]
+		(1)如果words1[i]==words2[j]，dp[i][j]=dp[i-1][j-1] + 1
 		(2)如果words1[i]!=words2[j]，dp[i][j]=max(dp[i-1][j], dp[i][j-1])
 	*/
 	len1, len2 := len(word1), len(word2)
