@@ -47,7 +47,7 @@ package everyday
     return res
 }
 
-func innerOrder(root * TreeNode, res *[]int){
+func innerOrder(root *TreeNode, res *[]int){
     if root == nil {
         return
     }
