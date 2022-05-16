@@ -22,41 +22,54 @@ func MaxEnvelopes(envelopes [][]int) int {
 	
 	*/
 	sort.Slice(envelopes, func(i, j int) bool {
-		if envelopes[i][0] != envelopes[j][0] {
-			return envelopes[i][0] < envelopes[j][0]
-		} 
-		return envelopes[i][1] < envelopes[j][1]
-	})
+        a, b := envelopes[i], envelopes[j]
+        return a[0] < b[0] || a[0] == b[0] && a[1] > b[1]
+    })
 
-	len1, lend := len(envelopes), 1
-	if len1 == 0 {
-		return 0
-	}
+
+	f := []int{}
+    for _, e := range envelopes {
+        h := e[1]
+		// 找到第一个比当前h 小的数，更新f[i]
+        if i := sort.SearchInts(f, h); i < len(f) {
+            f[i] = h
+        } else {
+			// 否则，直接加入到f 末尾
+            f = append(f, h)
+        }
+    }
+    return len(f)
+
+
+	// len1, lend := len(envelopes), 1
+	// if len1 == 0 {
+	// 	return 0
+	// }
 
 	
-	d := make([][2]int, len1+1)
-	d[lend] = [2]int{envelopes[0][0], envelopes[0][1]}
+	// d := make([][2]int, len1+1)
+	// d[lend] = [2]int{envelopes[0][0], envelopes[0][1]}
 
-	for i := 0; i < len1; i++ {
-		if d[lend][0] < envelopes[i][0] && d[lend][1] < envelopes[i][1] {
-			lend++
-			d[lend] = [2]int{envelopes[i][0], envelopes[i][1]}
-		} else {
-			l, r, k := 1, lend, 0
-			for l <= r {
-				mid := (l + r) >> 1
-				if d[mid][0] < envelopes[i][0] && d[mid][1] < envelopes[i][1] {
-					k = mid
-					l = mid + 1
-				} else {
-					r = mid - 1
-				}
-			}
-			d[k+1] = [2]int{envelopes[i][0], envelopes[i][1]}
-		}
-	}
+	// for i := 0; i < len1; i++ {
+	// 	if d[lend][0] < envelopes[i][0] && d[lend][1] < envelopes[i][1] {
+	// 		lend++
+	// 		d[lend] = [2]int{envelopes[i][0], envelopes[i][1]}
+	// 	} else {
+	// 		l, r, k := 1, lend, 0
+	// 		for l <= r {
+	// 			mid := (l + r) >> 1
+	// 			if d[mid][0] < envelopes[i][0] && d[mid][1] < envelopes[i][1] {
+	// 				k = mid
+	// 				l = mid + 1
+	// 			} else {
+	// 				r = mid - 1
+	// 			}
+	// 		}
+	// 		d[k+1] = [2]int{envelopes[i][0], envelopes[i][1]}
+	// 	}
+	// }
 
-	return lend
+	// return lend
 }
 
 func MaxEnvelopes2(envelopes [][]int) int {
