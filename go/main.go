@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	// "leetcode/go/problem/gj/mayDP"
-	"leetcode/go/problem/everyday"
+	"leetcode/go/problem/gj/mayDP"
+	// "leetcode/go/problem/everyday"
 )
 
 func main() {
@@ -21,6 +21,6 @@ func main() {
 	// matrix := [][]int{{5,4}, {6,4}, {6,7}, {2, 3}}
 	//top100.Rotate(matrix)
 	//fmt.Println("matrix: ", matrix)
-	fmt.Printf("res: %v\n", everyday.OneEditAway("aaaaa", "aaaab"))
-	// fmt.Printf("res: %v\n", mayDP.MaxEnvelopes(matrix))
+	// fmt.Printf("res: %v\n", everyday.OneEditAway("aaaaa", "aaaab"))
+	fmt.Printf("res: %v\n", mayDP.MinDistance("leetcode", "etco"))
 }
