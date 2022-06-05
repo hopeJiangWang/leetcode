@@ -46,24 +46,4 @@ func Makesquare(matchsticks []int) bool {
 	}
 	
 	return dfs(0)
-
-
-	// edges := [4]int{}
-	// var dfs func(int) bool
-	// dfs = func(idx int) bool {
-	// 	if idx == len(matchsticks) {
-	// 		return true
-	// 	}
-	// 	for i := range edges {
-	// 		edges[i] += matchsticks[idx]
-	// 		// 如果当前边还未满，那就继续试下一根火柴
-	// 		if edges[i] <= totalLen/4 && dfs(idx+1) {
-	// 			return true
-	// 		}
-	// 		// 否则，这个火柴不匹配这条边，需要剔除
-	// 		edges[i] -= matchsticks[idx]
-	// 	}
-	// 	return false
-	// }
-	// return dfs(0)
 }
